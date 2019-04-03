@@ -14,6 +14,10 @@ from .services.message_handlers import MessageHandlerManager
 import json
 import requests
 import hmac
+import asyncio
+
+loop = asyncio.get_event_loop_policy().new_event_loop()
+
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
@@ -31,8 +35,9 @@ class MessageViewSet(viewsets.ModelViewSet):
                     for message_event in entry.get('messaging', []):
                         message = MessageFactory().make(message_event)
                         if message:
-                            MessageHandlerManager().base_handler.handle_request(message)
+                            loop.run_in_executor(None, MessageHandlerManager().base_handler.handle_request, message)
             return Response(status=status.HTTP_200_OK)
+
         hub_challange = request.GET.get('hub.challenge')
         hub_token = request.GET.get('hub.verify_token')
         if hub_challange and hub_token == settings.HUB_CHALLANGE:
