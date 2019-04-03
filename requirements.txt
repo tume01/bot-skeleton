@@ -3,7 +3,7 @@ botocore==1.8.28
 certifi==2018.4.16
 chardet==3.0.4
 colorama==0.3.7
-Django==1.11.15
+Django==1.11.20
 django-cors-headers==2.1.0
 django-model-utils==3.0.0
 django-mysql==2.1.0
@@ -17,10 +17,9 @@ pyasn1==0.4.2
 python-dateutil==2.6.1
 python-dotenv==0.8.2
 pytz==2018.4
-PyYAML==3.12
-requests==2.18.4
+PyYAML==4.2b1
+requests==2.20.0
 rsa==3.4.2
 s3transfer==0.1.12
 six==1.10.0
-urllib3==1.22
-git+ssh://bitbucket.org/lapositivatd/proton@0.4.2#egg=proton
+urllib3==1.23
